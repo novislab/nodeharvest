@@ -1,4 +1,6 @@
-# NodeHarvest
+<p align="center">
+  <img src="https://raw.githubusercontent.com/novislab/nodeharvest/main/public/assets/logo.webp" width="400" alt="NodeHarvest">
+</p>
 
 <p align="center">
   <strong>Automated Node Manager for Passive Income Generation</strong>
@@ -44,17 +46,3 @@
   - Smart resource allocation
   - Automatic node creation based on profitability
   - Load balancing across regions
-
----
-
-## Tech Stack
-
-| Component | Technology |
-|-----------|-----------|
-| **Framework** | Laravel 12 |
-| **Frontend** | Livewire 4 + Flux UI |
-| **Styling** | Tailwind CSS v4 |
-| **Testing** | Pest PHP |
-| **Icons** | Heroicons + Lucide |
-
-
