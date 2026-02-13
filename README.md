@@ -1,59 +1,256 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/assets/logo.webp" width="280" alt="NodeHarvest Logo">
 </p>
 
-## About Laravel
+<h1 align="center">
+  <span style="color: #059669;">Node</span>Harvest
+</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <strong>Automated Node Manager for Passive Income Generation</strong>
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/Livewire-4E56A6?style=for-the-badge&logo=livewire&logoColor=white" alt="Livewire">
+  <img src="https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
+</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<p align="center">
+  <img src="https://img.shields.io/badge/version-1.0.0-059669?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/license-MIT-059669?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/status-active-059669?style=flat-square" alt="Status">
+</p>
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## About NodeHarvest
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**NodeHarvest** is a powerful web application designed to automate the creation and management of cryptocurrency nodes for earning passive income. Built with Laravel 12 and Livewire 4, it provides a seamless interface for deploying, monitoring, and scaling your node infrastructure.
 
-## Laravel Sponsors
+### Key Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Auto-Create Nodes** 🤖
+  - One-click node deployment
+  - Automated configuration
+  - Multi-chain support
 
-### Premium Partners
+- **Node Management** ⚡
+  - Real-time monitoring dashboard
+  - Performance analytics
+  - Health checks & alerts
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- **Earnings Tracker** 💰
+  - Live earnings dashboard
+  - Historical data visualization
+  - Profit optimization suggestions
+
+- **Auto-Scale** 📈
+  - Smart resource allocation
+  - Automatic node creation based on profitability
+  - Load balancing across regions
+
+---
+
+## Tech Stack
+
+| Component | Technology |
+|-----------|-----------|
+| **Framework** | Laravel 12 |
+| **Frontend** | Livewire 4 + Flux UI |
+| **Styling** | Tailwind CSS v4 |
+| **Testing** | Pest PHP |
+| **Icons** | Heroicons + Lucide |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- PHP 8.4+
+- Node.js 20+
+- Composer 2+
+- MySQL 8+ or PostgreSQL 15+
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/nodeharvest.git
+cd nodeharvest
+
+# Install PHP dependencies
+composer install
+
+# Install Node.js dependencies
+npm install
+
+# Copy environment file
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+
+# Run migrations
+php artisan migrate
+
+# Build assets
+npm run build
+
+# Start development server
+composer run dev
+```
+
+### Environment Configuration
+
+```env
+APP_NAME="NodeHarvest"
+APP_ENV=local
+APP_DEBUG=true
+
+# Database
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nodeharvest
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Node Configuration
+NODE_AUTO_CREATE=true
+NODE_MONITORING_INTERVAL=300
+NODE_EARNINGS_THRESHOLD=0.01
+```
+
+---
+
+## Usage
+
+### Dashboard
+
+Access the main dashboard at `/dashboard` to view:
+- Active nodes status
+- Total earnings
+- Node performance metrics
+- Auto-creation settings
+
+### Creating a Node
+
+1. Navigate to **Nodes** → **Create New**
+2. Select your preferred chain/network
+3. Configure auto-scaling options
+4. Click **Deploy Node**
+
+### Auto-Create Settings
+
+Configure automatic node creation:
+- **Minimum Earnings Threshold**: Auto-create when earnings exceed X
+- **Max Nodes**: Limit concurrent nodes
+- **Regions**: Select deployment regions
+- **Auto-Restart**: Enable automatic node restart on failure
+
+---
+
+## Development
+
+### Running Tests
+
+```bash
+# Run all tests
+php artisan test --compact
+
+# Run specific test
+php artisan test --filter=NodeCreationTest
+```
+
+### Code Style
+
+```bash
+# Format PHP code
+composer format
+
+# Check code style
+vendor/bin/pint --test
+```
+
+### Development Commands
+
+```bash
+# Start Vite dev server
+npm run dev
+
+# Start Laravel dev server
+php artisan serve
+
+# Watch for changes
+npm run watch
+```
+
+---
+
+## Architecture
+
+```
+app/
+├── Actions/          # Invokable action classes
+├── Console/          # Artisan commands
+├── Http/
+│   └── Controllers/  # HTTP controllers
+├── Models/           # Eloquent models
+├── Services/         # Business logic services
+└── View/
+    └── Components/   # Blade components
+
+resources/
+├── views/
+│   ├── components/   # UI components
+│   ├── layouts/      # Page layouts
+│   ├── pages/        # Livewire pages
+│   └── partials/     # Shared partials
+└── css/
+    └── app.css       # Tailwind styles
+
+routes/
+├── web.php           # Web routes
+└── console.php       # Console routes
+```
+
+---
+
+## Security
+
+- CSRF protection on all forms
+- Encrypted session storage
+- Rate limiting on API endpoints
+- Input validation via Form Requests
+- SQL injection protection via Eloquent
+
+---
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+We welcome contributions! Please follow these steps:
 
-## Code of Conduct
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+NodeHarvest is open-sourced software licensed under the [MIT license](LICENSE).
+
+---
+
+<p align="center">
+  <span style="color: #059669;">Built with ❤️ using Laravel & Livewire</span>
+</p>
+
+<p align="center">
+  <sub>© 2026 NodeHarvest. All rights reserved.</sub>
+</p>
