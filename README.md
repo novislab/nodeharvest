@@ -1,6 +1,4 @@
-<h1 align="center" style="font-size: 4rem; font-weight: 800; margin: 0;">
-  <span style="color: #059669;">Node</span>Harvest
-</h1>
+# NodeHarvest
 
 <p align="center">
   <strong>Automated Node Manager for Passive Income Generation</strong>
