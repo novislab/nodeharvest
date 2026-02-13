@@ -1,11 +1,15 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "novislab/nodeharvest",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "NodeHarvest - Automated Node Manager for Passive Income Generation",
     "keywords": [
+        "nodeharvest",
+        "node-manager",
+        "myst",
+        "passive-income",
         "laravel",
-        "framework"
+        "livewire"
     ],
     "license": "MIT",
     "require": {
