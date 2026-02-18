@@ -8,13 +8,12 @@
         <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
     </flux:sidebar.header>
         <flux:sidebar.nav>
+            <flux:sidebar.group heading="Home" />
             <flux:sidebar.item icon="home" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')" wire:navigate.hover>Dashboard</flux:sidebar.item>
             <flux:sidebar.item icon="server" href="{{ route('nodes') }}" :current="request()->routeIs('nodes')" wire:navigate.hover>Nodes</flux:sidebar.item>
+            <flux:sidebar.group heading="Settings" />
+            <flux:sidebar.item icon="user" href="{{ route('settings.profile') }}" :current="request()->routeIs('settings.profile')" wire:navigate.hover>Profile</flux:sidebar.item>
         </flux:sidebar.nav>
     <flux:sidebar.spacer />
-    <flux:sidebar.nav>
-        <flux:sidebar.item icon="cog-6-tooth" href="#">Settings</flux:sidebar.item>
-        <flux:sidebar.item icon="information-circle" href="#">Help</flux:sidebar.item>
-    </flux:sidebar.nav>
     @include('partials.user-menu', ['class' => 'max-lg:hidden'])
 </flux:sidebar>

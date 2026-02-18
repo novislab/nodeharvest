@@ -12,5 +12,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::livewire('/dashboard', 'pages::dashboard')->name('dashboard');
     Route::livewire('/nodes', 'pages::nodes')->name('nodes');
+    Route::livewire('/settings/profile', 'pages::settings.profile')->name('settings.profile');
     Route::post('/logout', Logout::class)->name('logout');
 });
