@@ -1,10 +1,7 @@
 <flux:dropdown position="top" align="start" {{ $attributes->merge(['class' => '']) }}>
-    <flux:sidebar.profile avatar="https://fluxui.dev/img/demo/user.png" name="Olivia Martin" />
+    <flux:sidebar.profile name="{{ auth()->user()->name }}" />
     <flux:menu>
-        <flux:menu.radio.group>
-            <flux:menu.radio checked>Olivia Martin</flux:menu.radio>
-            <flux:menu.radio>Truly Delta</flux:menu.radio>
-        </flux:menu.radio.group>
+        <flux:menu.item href="#" icon="user">Profile</flux:menu.item>
         <flux:menu.separator />
         <form method="POST" action="{{ route('logout') }}" class="contents">
             @csrf
