@@ -7,9 +7,10 @@
         />
         <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
     </flux:sidebar.header>
-    <flux:sidebar.nav>
-        <flux:sidebar.item icon="home" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')" wire:navigate.hover>Dashboard</flux:sidebar.item>
-    </flux:sidebar.nav>
+        <flux:sidebar.nav>
+            <flux:sidebar.item icon="home" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')" wire:navigate.hover>Dashboard</flux:sidebar.item>
+            <flux:sidebar.item icon="server" href="{{ route('nodes') }}" :current="request()->routeIs('nodes')" wire:navigate.hover>Nodes</flux:sidebar.item>
+        </flux:sidebar.nav>
     <flux:sidebar.spacer />
     <flux:sidebar.nav>
         <flux:sidebar.item icon="cog-6-tooth" href="#">Settings</flux:sidebar.item>
