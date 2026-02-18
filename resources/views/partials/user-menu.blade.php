@@ -1,5 +1,5 @@
 <flux:dropdown position="top" align="start" {{ $attributes->merge(['class' => '']) }}>
-    <flux:sidebar.profile avatar="{{ auth()->user()->avatar ?? asset('assets/default-avatar.png') }}" icon="user-circle" name="{{ auth()->user()->name }}" />
+    <flux:sidebar.profile name="{{ auth()->user()->name }}" />
     <flux:menu>
         <flux:menu.item href="#" icon="user">Profile</flux:menu.item>
         <flux:menu.separator />
