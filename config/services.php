@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'hostkey' => [
+        'api_key' => env('HOSTKEY_API_KEY'),
+    ],
+
 ];
