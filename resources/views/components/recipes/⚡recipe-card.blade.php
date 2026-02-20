@@ -91,7 +91,7 @@ $modalName = "delete-recipe-{$recipe->id}";
     </flux:card>
     
     {{-- Delete Modal --}}
-    <flux:modal :name="$modalName" class="min-w-[22rem] bg-zinc-950 border border-zinc-800">
+    <flux:modal :name="$modalName" class="min-w-88 bg-zinc-950 border border-zinc-800">
         <div class="space-y-6 p-6">
             <div>
                 <flux:heading size="lg">Delete recipe?</flux:heading>
