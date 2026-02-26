@@ -38,7 +38,7 @@ new #[Layout('layouts::auth')] #[Title('Login')] class extends Component
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             RateLimiter::clear($key);
             Session::regenerate();
-            Flux::toast(text: 'Great to see you again!');
+            Flux::toast(text: 'Great to see you again!', variant: 'success');
             $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
 
             return;

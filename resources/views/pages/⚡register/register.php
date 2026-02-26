@@ -33,7 +33,7 @@ new #[Layout('layouts::auth')] #[Title('Register')] class extends Component
         ]);
 
         Auth::login($user);
-        Flux::toast(text: 'Welcome to NodeHarvest!');
+        Flux::toast(text: 'Registration successful.', variant: 'success');
         $this->redirect(route('dashboard', absolute: false), navigate: true);
     }
 };
