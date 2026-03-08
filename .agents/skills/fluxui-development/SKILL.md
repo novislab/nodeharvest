@@ -1,6 +1,6 @@
 ---
 name: fluxui-development
-description: "Develops UIs with Flux UI Pro components. Activates when creating buttons, forms, modals, inputs, tables, charts, date pickers, or UI components; replacing HTML elements with Flux; working with flux: components; or when the user mentions Flux, component library, UI components, form fields, or asks about available Flux components."
+description: "Develops UIs with Flux UI Free components. Activates when creating buttons, forms, modals, inputs, dropdowns, checkboxes, or UI components; replacing HTML form elements with Flux; working with flux: components; or when the user mentions Flux, component library, UI components, form fields, or asks about available Flux components."
 license: MIT
 metadata:
   author: laravel
@@ -12,9 +12,8 @@ metadata:
 
 Activate this skill when:
 
-- Creating new UI components or pages
+- Creating UI components or pages
 - Working with forms, modals, or interactive elements
-- Styling components with Flux UI patterns
 - Checking available Flux components
 
 ## Documentation
@@ -23,7 +22,7 @@ Use `search-docs` for detailed Flux UI patterns and documentation.
 
 ## Basic Usage
 
-This project uses the Pro version of Flux UI, which includes all free and Pro components and variants.
+This project uses the free edition of Flux UI, which includes all free components and variants but not Pro components.
 
 Flux UI is a component library for Livewire built with Tailwind CSS. It provides components that are easy to use and customize.
 
@@ -34,9 +33,9 @@ Use Flux UI components when available. Fall back to standard Blade components wh
 <flux:button variant="primary">Click me</flux:button>
 ```
 
-## Available Components (Pro Edition)
+## Available Components (Free Edition)
 
-Available: accordion, autocomplete, avatar, badge, brand, breadcrumbs, button, calendar, callout, card, chart, checkbox, command, composer, context, date-picker, dropdown, editor, field, file-upload, heading, icon, input, kanban, modal, navbar, otp-input, pagination, pillbox, popover, profile, radio, select, separator, skeleton, slider, switch, table, tabs, text, textarea, time-picker, toast, tooltip
+Available: avatar, badge, brand, breadcrumbs, button, callout, checkbox, dropdown, field, heading, icon, input, modal, navbar, otp-input, profile, radio, select, separator, skeleton, switch, text, textarea, tooltip
 
 ## Icons
 
@@ -66,17 +65,14 @@ php artisan flux:icon crown grip-vertical github
 </flux:field>
 ```
 
-### Tables
+### Modals
 
-<!-- Table -->
+<!-- Modal -->
 ```blade
-<flux:table>
-    <flux:table.head>
-        <flux:table.row>
-            <flux:table.cell>Name</flux:table.cell>
-        </flux:table.row>
-    </flux:table.head>
-</flux:table>
+<flux:modal wire:model="showModal">
+    <flux:heading>Title</flux:heading>
+    <p>Content</p>
+</flux:modal>
 ```
 
 ## Verification
@@ -87,6 +83,7 @@ php artisan flux:icon crown grip-vertical github
 
 ## Common Pitfalls
 
+- Trying to use Pro-only components in the free edition
 - Not checking if a Flux component exists before creating custom implementations
 - Forgetting to use the `search-docs` tool for component-specific documentation
 - Not following existing project patterns for Flux usage
