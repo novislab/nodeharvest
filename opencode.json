@@ -9,6 +9,16 @@
                 "artisan",
                 "boost:mcp"
             ]
+        },
+        "instruckt": {
+            "type": "local",
+            "enabled": true,
+            "command": [
+                "php",
+                "/home/novistech/laravel/nodeharvest/artisan",
+                "mcp:start",
+                "instruckt"
+            ]
         }
     }
 }
