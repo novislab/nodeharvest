@@ -3,7 +3,7 @@
     <flux:menu>
         <flux:menu.item href="#" icon="user">Profile</flux:menu.item>
         <flux:menu.separator />
-        <form method="POST" action="{{ route('logout') }}" class="contents">
+        <form method="POST" action="{{ route('action.logout') }}" class="contents">
             @csrf
             <flux:menu.item icon="arrow-right-start-on-rectangle" as="button" type="submit">Logout</flux:menu.item>
         </form>
