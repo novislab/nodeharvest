@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "910989785c68368eef2b52cfe8e90669",
+    "content-hash": "ac1099852aeeddfb75882913caef2e40",
     "packages": [
         {
             "name": "brick/math",
@@ -2703,6 +2703,89 @@
                 "source": "https://github.com/livewire/flux/tree/v2.13.0"
             },
             "time": "2026-03-03T03:32:35+00:00"
+        },
+        {
+            "name": "livewire/flux-pro",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/novislab/flux-pro.git",
+                "reference": "e64d3be23c5d772a5f57641673b5f01bd587128f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/novislab/flux-pro/zipball/e64d3be23c5d772a5f57641673b5f01bd587128f",
+                "reference": "e64d3be23c5d772a5f57641673b5f01bd587128f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^10.0|^11.0|^12.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "illuminate/view": "^10.0|^11.0|^12.0",
+                "laravel/prompts": "^0.1.24|^0.2|^0.3",
+                "livewire/flux": "^2.13",
+                "livewire/livewire": "^3.7.4|^4.0",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0"
+            },
+            "require-dev": {
+                "livewire/volt": "*",
+                "orchestra/testbench": "^10.8"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "FluxPro\\FluxProServiceProvider"
+                    ],
+                    "aliases": {
+                        "Flux": "FluxPro\\FluxPro"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FluxPro\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "App\\": "workbench/app/"
+                }
+            },
+            "scripts": {
+                "serve": [
+                    "Composer\\Config::disableProcessTimeout",
+                    "@php vendor/bin/testbench workbench:build --ansi",
+                    "@php vendor/bin/testbench serve --port 3000 --ansi"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "The pro version of Flux, the official UI component library for Livewire.",
+            "keywords": [
+                "components",
+                "flux",
+                "laravel",
+                "livewire",
+                "ui"
+            ],
+            "support": {
+                "source": "https://github.com/novislab/flux-pro/tree/main",
+                "issues": "https://github.com/novislab/flux-pro/issues"
+            },
+            "time": "2026-03-09T01:04:15+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -11585,7 +11668,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "livewire/flux-pro": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
