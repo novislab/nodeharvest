@@ -34,7 +34,7 @@ return [
     /*
     | Uses 'api' by default (no CSRF). Add 'auth' here to gate to logged-in users.
     */
-    'middleware' => explode(',', env('INSTRUCKT_MIDDLEWARE', 'api')),
+    'middleware' => explode(',', (string) env('INSTRUCKT_MIDDLEWARE', 'api')),
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
     | Example: 'https://cdn.jsdelivr.net/npm/instruckt@0.1.0/dist/instruckt.iife.js'
     */
-    'cdn_url' => env('INSTRUCKT_CDN_URL', null),
+    'cdn_url' => env('INSTRUCKT_CDN_URL'),
 
     /*
     |--------------------------------------------------------------------------
