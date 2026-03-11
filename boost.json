@@ -10,6 +10,7 @@
     ],
     "sail": false,
     "skills": [
+        "configuring-horizon",
         "fluxui-development",
         "livewire-development",
         "pest-testing",
