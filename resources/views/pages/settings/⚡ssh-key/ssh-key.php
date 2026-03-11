@@ -2,6 +2,7 @@
 
 use App\Models\SshKey;
 use Flux\Flux;
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
@@ -43,11 +44,7 @@ new #[Layout('layouts::app')] #[Title('SSH Key')] class extends Component
 
     public function updatedSelectAll(bool $value): void
     {
-        if ($value) {
-            $this->selected = $this->sshKeys->pluck('id')->map(fn ($id) => (string) $id)->toArray();
-        } else {
-            $this->selected = [];
-        }
+        $this->selected = $value ? $this->sshKeys->pluck('id')->map(fn ($id) => (string) $id)->toArray() : [];
     }
 
     public function updatedSelected(): void
@@ -111,7 +108,7 @@ new #[Layout('layouts::app')] #[Title('SSH Key')] class extends Component
 
     public function bulkDelete(): void
     {
-        if (empty($this->selected)) {
+        if ($this->selected === []) {
             return;
         }
         $count = SshKey::whereIn('id', $this->selected)->delete();
@@ -120,7 +117,7 @@ new #[Layout('layouts::app')] #[Title('SSH Key')] class extends Component
         $this->selectAll = false;
     }
 
-    public function render(): \Illuminate\View\View
+    public function render(): View
     {
         $sshKeys = SshKey::when($this->search, fn ($query) => $query->where('name', 'like', "%{$this->search}%"))
             ->latest()
