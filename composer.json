@@ -16,6 +16,7 @@
         "php": "^8.2",
         "laravel/framework": "^13.0",
         "laravel/nightwatch": "^1.24",
+        "laravel/octane": "*",
         "laravel/tinker": "^3.0",
         "livewire/blaze": "^1.0",
         "livewire/flux": "^2.13",
