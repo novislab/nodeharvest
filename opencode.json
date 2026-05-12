@@ -4,12 +4,21 @@
         "laravel-boost": {
             "type": "local",
             "enabled": true,
-            "command": ["php", "artisan", "boost:mcp"]
+            "command": [
+                "php",
+                "artisan",
+                "boost:mcp"
+            ]
         },
         "instruckt": {
             "type": "local",
             "enabled": true,
-            "command": ["php", "artisan", "mcp:start", "instruckt"]
+            "command": [
+                "php",
+                "artisan",
+                "mcp:start",
+                "instruckt"
+            ]
         }
     }
 }
