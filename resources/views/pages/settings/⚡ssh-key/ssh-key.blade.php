@@ -17,7 +17,7 @@
                         wire:click="bulkDelete()" 
                         variant="danger" 
                         class="ml-2"
-                        :disabled="!$wire.selected.length"
+                        :disabled="empty($selected)"
                     >
                         Delete ({{ count($selected) }})
                     </flux:button>
@@ -82,13 +82,11 @@
             <flux:field>
                 <flux:label>Name</flux:label>
                 <flux:input wire:model="form.name" class="w-full" required />
-                @error('form.name')<flux:error>{{ $message }}</flux:error>@enderror
             </flux:field>
-            
+
             <flux:field>
                 <flux:label>SSH Key</flux:label>
                 <flux:textarea wire:model="form.key" rows="2" placeholder="ssh-rsa AAAA..." class="w-full font-mono text-sm" required />
-                @error('form.key')<flux:error>{{ $message }}</flux:error>@enderror
             </flux:field>
 
             <flux:field>
@@ -126,7 +124,6 @@
                     <flux:label>" to confirm</flux:label>
                 </div>
                 <flux:input wire:model="confirmName" placeholder="Enter SSH key name" class="w-full" />
-                @error('confirmName')<flux:error>{{ $message }}</flux:error>@enderror
             </flux:field>
 
             <div class="flex gap-3 justify-end pt-2">
