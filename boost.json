@@ -8,21 +8,18 @@
     "nightwatch": false,
     "packages": [
         "spatie/laravel-permission",
-        "spatie/laravel-backup",
         "joshcirre/instruckt-laravel",
         "livewire/blaze"
     ],
     "sail": false,
     "skills": [
         "laravel-best-practices",
-        "configuring-horizon",
         "configure-nightwatch",
         "fluxui-development",
         "livewire-development",
         "pest-testing",
         "tailwindcss-development",
         "blaze-optimize",
-        "laravel-backup",
         "laravel-permission-development",
         "instruckt",
         "deploying-laravel-cloud"
