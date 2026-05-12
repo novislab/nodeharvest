@@ -1,9 +1,12 @@
 <?php
 
+use App\Livewire\Forms\SshKey as SshKeyForm;
 use App\Models\SshKey;
 use Flux\Flux;
-use Illuminate\View\View;
+use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -13,15 +16,15 @@ new #[Layout('layouts::app')] #[Title('SSH Key')] class extends Component
     #[Url(as: 'search', except: '')]
     public string $search = '';
 
-    public string $name = '';
-
-    public string $key = '';
-
+    #[Locked]
     public ?int $editingId = null;
 
     public bool $modalOpen = false;
 
+    #[Locked]
     public ?int $deleteId = null;
+
+    public ?string $deleteName = null;
 
     public string $confirmName = '';
 
@@ -31,10 +34,21 @@ new #[Layout('layouts::app')] #[Title('SSH Key')] class extends Component
 
     public bool $selectAll = false;
 
-    protected array $rules = [
-        'name' => ['required', 'string', 'max:255'],
-        'key' => ['required', 'string'],
-    ];
+    public SshKeyForm $form;
+
+    #[Computed]
+    public function sshKeys(): Collection
+    {
+        return SshKey::when($this->search, fn ($query) => $query->where('name', 'like', "%{$this->search}%"))
+            ->latest()
+            ->get();
+    }
+
+    #[Computed]
+    public function deletingSshKey(): ?SshKey
+    {
+        return SshKey::find($this->deleteId);
+    }
 
     public function updatedSearch(): void
     {
@@ -54,56 +68,60 @@ new #[Layout('layouts::app')] #[Title('SSH Key')] class extends Component
 
     public function openModal(?int $id = null): void
     {
-        $this->reset(['name', 'key', 'editingId']);
-        if ($id) {
-            $ssh = SshKey::find($id);
-            if ($ssh) {
-                $this->editingId = $ssh->id;
-                $this->name = $ssh->name;
-                $this->key = $ssh->key;
-            }
-        }
+        $this->form->reset();
+        $this->editingId = $id;
+        $id && $this->form->fill(SshKey::findOrFail($id));
         $this->modalOpen = true;
     }
 
     public function save(): void
     {
-        $this->validate();
-        if ($this->editingId) {
-            $ssh = SshKey::find($this->editingId);
-            $ssh?->update(['name' => $this->name, 'key' => $this->key]);
-            Flux::toast(heading: 'SSH key updated', text: 'Your SSH key has been updated successfully.', variant: 'success');
-        } else {
-            SshKey::create(['name' => $this->name, 'key' => $this->key]);
-            Flux::toast(heading: 'SSH key created', text: 'Your new SSH key has been added.', variant: 'success');
+        $this->form->validateKey($this);
+
+        if ($this->getErrorBag()->has('form.key')) {
+            return;
         }
-        $this->reset(['name', 'key', 'editingId', 'modalOpen']);
+
+        $this->form->validate();
+
+        $ssh = $this->editingId ? SshKey::find($this->editingId) : new SshKey;
+        $ssh?->fill($this->form->all())->save();
+
+        Flux::toast(
+            text: $this->editingId ? 'Your SSH key has been updated successfully.' : 'Your new SSH key has been added.',
+            variant: 'success'
+        );
+
+        $this->form->reset();
+        $this->editingId = null;
+        $this->modalOpen = false;
     }
 
     public function confirmDelete(int $id): void
     {
+        $sshKey = SshKey::find($id);
         $this->deleteId = $id;
+        $this->deleteName = $sshKey?->name;
         $this->confirmName = '';
         $this->deleteModalOpen = true;
     }
 
     public function delete(): void
     {
-        $ssh = SshKey::find($this->deleteId);
-        if ($ssh && $ssh->name === $this->confirmName) {
-            $ssh->delete();
-            Flux::toast(heading: 'SSH key deleted', text: 'The SSH key has been removed.', variant: 'success');
-        } else {
+        if ($this->deletingSshKey->name !== $this->confirmName) {
             $this->addError('confirmName', 'Name does not match');
 
             return;
         }
-        $this->reset(['deleteId', 'confirmName', 'deleteModalOpen']);
+
+        $this->deletingSshKey->delete();
+        Flux::toast(text: 'The SSH key has been removed.', variant: 'success');
+        $this->reset(['deleteId', 'deleteName', 'confirmName', 'deleteModalOpen']);
     }
 
     public function cancelDelete(): void
     {
-        $this->reset(['deleteId', 'confirmName', 'deleteModalOpen']);
+        $this->reset(['deleteId', 'deleteName', 'confirmName', 'deleteModalOpen']);
     }
 
     public function bulkDelete(): void
@@ -111,20 +129,10 @@ new #[Layout('layouts::app')] #[Title('SSH Key')] class extends Component
         if ($this->selected === []) {
             return;
         }
+
         $count = SshKey::whereIn('id', $this->selected)->delete();
-        Flux::toast(heading: 'SSH keys deleted', text: "{$count} SSH key(s) have been removed.", variant: 'success');
+        Flux::toast(text: "{$count} SSH key(s) have been removed.", variant: 'success');
         $this->selected = [];
         $this->selectAll = false;
-    }
-
-    public function render(): View
-    {
-        $sshKeys = SshKey::when($this->search, fn ($query) => $query->where('name', 'like', "%{$this->search}%"))
-            ->latest()
-            ->get();
-
-        return view('pages.settings.⚡ssh-key.ssh-key', [
-            'sshKeys' => $sshKeys,
-        ]);
     }
 };
