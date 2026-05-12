@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Logout;
 use Illuminate\Support\Facades\Route;
 
