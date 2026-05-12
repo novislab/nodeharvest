@@ -8,7 +8,9 @@
     "nightwatch": false,
     "packages": [
         "spatie/laravel-permission",
-        "spatie/laravel-backup"
+        "spatie/laravel-backup",
+        "joshcirre/instruckt-laravel",
+        "livewire/blaze"
     ],
     "sail": false,
     "skills": [
@@ -19,8 +21,10 @@
         "livewire-development",
         "pest-testing",
         "tailwindcss-development",
+        "blaze-optimize",
         "laravel-backup",
         "laravel-permission-development",
+        "instruckt",
         "deploying-laravel-cloud"
     ]
 }
