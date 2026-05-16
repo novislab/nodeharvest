@@ -8,7 +8,6 @@
     "nightwatch": false,
     "packages": [
         "spatie/laravel-permission",
-        "joshcirre/instruckt-laravel",
         "livewire/blaze"
     ],
     "sail": false,
@@ -21,7 +20,6 @@
         "tailwindcss-development",
         "blaze-optimize",
         "laravel-permission-development",
-        "instruckt",
         "deploying-laravel-cloud"
     ]
 }
