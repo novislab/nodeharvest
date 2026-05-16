@@ -14,13 +14,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bacon/bacon-qr-code": "^3.1",
         "laravel/framework": "^13.0",
         "laravel/nightwatch": "^1.24",
         "laravel/octane": "*",
+        "laravel/passkeys": "^0.2.0",
         "laravel/tinker": "^3.0",
         "livewire/blaze": "^1.0",
         "livewire/flux": "^2.13",
         "livewire/livewire": "^4.1",
+        "pragmarx/google2fa-laravel": "^3.0",
         "spatie/laravel-permission": "^7.1"
     },
     "require-dev": {
