@@ -17,6 +17,9 @@ use Spatie\Permission\Traits\HasRoles;
     'name',
     'email',
     'password',
+    'avatar',
+    'two_factor_secret',
+    'two_factor_enabled',
 ])]
 #[Hidden([
     'password',
