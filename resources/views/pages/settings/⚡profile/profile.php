@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Flux\Flux;
+use Laravel\Passkeys\Passkey;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use PragmaRX\Google2FAQRCode\Google2FA;
@@ -29,11 +31,46 @@ new #[Layout('layouts::app')] #[Title('Profile')] class extends Component
     public string $twoFactorQrCode = '';
     public string $twoFactorCode = '';
 
+    /** @var array<int, array<string, mixed>> */
+    public array $passkeys = [];
+
+    public string $passkeyName = '';
+
+    public bool $showPasskeyModal = false;
+
     public function mount(): void
     {
         $user = Auth::user();
         $this->name = $user->name;
         $this->email = $user->email;
+        $this->loadPasskeys();
+    }
+
+    public function loadPasskeys(): void
+    {
+        /** @var Passkey $passkey */
+        $this->passkeys = Auth::user()->passkeys()
+            ->orderByDesc('created_at')
+            ->get()
+            ->map(fn (Passkey $passkey): array => [
+                'id' => $passkey->id,
+                'name' => $passkey->name,
+                'authenticator' => $passkey->authenticator,
+                'last_used_at' => $passkey->last_used_at?->diffForHumans() ?? 'Never',
+                'created_at' => $passkey->created_at->diffForHumans(),
+            ])
+            ->all();
+    }
+
+    public function deletePasskey(int $passkeyId): void
+    {
+        $passkey = Auth::user()->passkeys()->find($passkeyId);
+
+        if ($passkey) {
+            $passkey->delete();
+            Flux::toast(text: 'Passkey removed.', variant: 'success');
+            $this->loadPasskeys();
+        }
     }
 
     public function save(): void
