@@ -133,7 +133,6 @@ return [
     ],
 
     'ignore_paths' => [
-        'instruckt*',
         'nova-api*',
         'pulse*',
         '_boost*',
