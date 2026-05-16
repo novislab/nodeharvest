@@ -9,8 +9,6 @@
         @include('partials.favicon')
         @include('partials.metadata')
 
-        <script>window.instrucktEnabled = @json(config('instruckt.enabled'));</script>
-
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         @fluxAppearance
