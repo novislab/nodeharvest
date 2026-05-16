@@ -18,7 +18,8 @@ describe('login page', function () {
             ->assertSuccessful()
             ->assertSee('Welcome back')
             ->assertSee('Email')
-            ->assertSee('Password');
+            ->assertSee('Password')
+            ->assertSee('Sign in with passkey');
     });
 
     it('redirects authenticated users to dashboard', function () {
