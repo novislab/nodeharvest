@@ -45,6 +45,7 @@
                 }
 
                 const data = await storeResponse.json();
+                sessionStorage.setItem('passkey_login_success', 'true');
                 window.location.href = data.redirect;
             } catch (error) {
                 if (error.name === 'NotAllowedError') {
