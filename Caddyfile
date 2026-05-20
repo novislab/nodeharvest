@@ -1,0 +1,110 @@
+{
+	{$CADDY_GLOBAL_OPTIONS}
+
+	admin {$CADDY_SERVER_ADMIN_HOST}:{$CADDY_SERVER_ADMIN_PORT}
+
+	frankenphp {
+		worker {
+			file "{$APP_PUBLIC_PATH}/frankenphp-worker.php"
+			{$CADDY_SERVER_WORKER_DIRECTIVE}
+			{$CADDY_SERVER_WATCH_DIRECTIVES}
+		}
+	}
+}
+
+{$CADDY_EXTRA_CONFIG}
+
+{$CADDY_SERVER_SERVER_NAME} {
+	log {
+		level {$CADDY_SERVER_LOG_LEVEL}
+
+		# Redact the authorization parameters...
+		format filter {
+			wrap {$CADDY_SERVER_LOGGER}
+			fields {
+				request>headers>X-Xsrf-Token replace REDACTED
+				request>query>authorization replace REDACTED
+			}
+		}
+	}
+
+	route {
+		root * "{$APP_PUBLIC_PATH}"
+		encode zstd br gzip
+
+		# Mercure configuration is injected here...
+		{$CADDY_SERVER_EXTRA_DIRECTIVES}
+
+		request_body {
+			max_size 256MB
+		}
+
+		# Favicon/robots/sitemaps: skip noisy logs
+		@meta path /favicon.ico /robots.txt /sitemap.xml
+		log_skip @meta
+
+		# Static assets (long cache)
+		@static {
+			path *.css *.css.map *.js *.js.map *.jpg *.jpeg *.png *.gif *.ico *.cur *.heic *.webp *.tif *.tiff *.mp3 *.m4a *.aac *.ogg *.midi *.mid *.wav *.mp4 *.mov *.webm *.mpeg *.mpg *.avi *.ogv *.flv *.wmv *.htc *.gz *.svg *.svgz *.ttf *.ttc *.otf *.eot *.woff *.woff2
+		}
+		header @static Cache-Control "public, immutable, stale-while-revalidate, max-age=31536000"
+
+		# Fonts/SVG: allow cross-origin usage (cache header inherited from @static)
+		@fonts {
+			path *.svg *.svgz *.ttf *.ttc *.otf *.eot *.woff *.woff2
+		}
+		header @fonts Access-Control-Allow-Origin "*"
+
+		# Short-lived static
+		@staticshort {
+			path *.json *.xml *.rss
+		}
+		header @staticshort Cache-Control "no-cache, max-age=3600"
+
+		# Block PHP execution in storage directory to prevent uploaded malicious PHP files from running
+		# Reference: Livewire arbitrary file upload (GHSA-29cq-5w36-x7w3)
+		@storage-php path_regexp ^/storage/.*\.php$
+		respond @storage-php 403
+
+		# Block access to files that may expose sensitive information
+		@rejected {
+			path *.bak *.conf *.config *.dist *.inc *.ini *.log *.sh *.sql *.swp *.swo *~ */.*
+			# EXCEPTION: /.well-known/* is allowed per RFC 8615 for ACME challenges
+			# https://www.rfc-editor.org/rfc/rfc8615
+			not path /.well-known/*
+		}
+		respond @rejected 403
+
+		# Security Headers
+		# https://owasp.org/www-project-secure-headers/
+		header {
+			defer
+			# Prevent clickjacking attacks by disabling iframe embedding
+			X-Frame-Options "SAMEORIGIN"
+			# Prevent MIME type sniffing attacks
+			X-Content-Type-Options "nosniff"
+			# Control referrer information sent with requests
+			Referrer-Policy "strict-origin-when-cross-origin"
+			# Enable strict transport security (HSTS)
+			Strict-Transport-Security "max-age=31536000; includeSubDomains"
+			# Remove server identification headers
+			-Server
+			-X-Powered-By
+		}
+
+		@reverbApp path /app/*
+		reverse_proxy @reverbApp 127.0.0.1:8080
+
+		@reverbApps path /apps/*
+		reverse_proxy @reverbApps 127.0.0.1:8080
+
+		php_server {
+			index frankenphp-worker.php
+			try_files {path} frankenphp-worker.php
+			# Required for the public/storage/ directory...
+			resolve_root_symlink
+		}
+
+		file_server
+	}
+}
