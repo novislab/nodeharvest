@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     supervisor \
     ffmpeg \
-    && install-php-extensions pdo_pgsql mbstring bcmath pcntl gd exif intl redis \
+    && install-php-extensions pdo_pgsql mbstring bcmath pcntl gd exif intl redis zip \
     && pecl install uv-beta \
     && docker-php-ext-enable uv \
     && rm -rf /var/lib/apt/lists/* \
